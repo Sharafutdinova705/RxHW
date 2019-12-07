@@ -1,0 +1,6 @@
+framework module Pods_RxHW {
+  umbrella header "Pods-RxHW-umbrella.h"
+
+  export *
+  module * { export * }
+}
