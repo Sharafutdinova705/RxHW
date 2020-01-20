@@ -15,7 +15,6 @@ class LoginViewController: UIViewController {
     private let contentView = LoginView()
     var loginViewModel = LoginViewModel()
     let disposeBag = DisposeBag()
-    let listViewController = ListViewController()
 
     override func loadView() {
         view = contentView
@@ -26,13 +25,14 @@ class LoginViewController: UIViewController {
         
         _ = contentView.emailTextField.inputTextField.rx.text.map { $0 ?? "" }.bind(to: loginViewModel.emailText)
         _ = contentView.passwordTextField.inputTextField.rx.text.map { $0 ?? "" }.bind(to: loginViewModel.passwordText)
+        
         contentView.submitButton.rx.tap.bind { [weak self] in
             self?.loginViewModel.isValid.subscribe(onNext: { [weak self] isValid in
                 if isValid {
                     guard let self = self else { return }
-                    self.show(self.listViewController, sender: nil)
+                    self.show(ListViewController(), sender: nil)
                 }
-            })
+            }).disposed(by: self?.disposeBag ?? DisposeBag())
         }.disposed(by: disposeBag)
     }
 }

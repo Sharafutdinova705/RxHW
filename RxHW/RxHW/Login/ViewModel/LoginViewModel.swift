@@ -16,7 +16,7 @@ public class LoginViewModel {
     let dataStore: DataStore = DataStore()
     var emailText = BehaviorRelay<String>(value: "")
     var passwordText = BehaviorRelay<String>(value: "")
-    var isValid: Observable<Bool>{
+    var isValid: Observable<Bool> {
         return Observable.zip(emailText.asObservable(), passwordText.asObservable()) { email, password in
             return self.dataStore.users.contains(where: { user in
                 user.login == email && user.password == password

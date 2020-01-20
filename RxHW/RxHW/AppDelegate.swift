@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let window = window {
             window.backgroundColor = UIColor.white
             let navigationController = UINavigationController()
-            let mainView = LoginViewController(nibName: nil, bundle: nil) //ViewController = Name of your controller
+            let mainView = LoginViewController(nibName: nil, bundle: nil) 
             navigationController.viewControllers = [mainView]
             window.rootViewController = navigationController
             window.makeKeyAndVisible()

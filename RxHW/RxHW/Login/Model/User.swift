@@ -11,9 +11,11 @@ import Foundation
 public struct User {
     public let login: String
     public let password: String
+    public let urlRequest: String
     
-    public init(login: String, password: String) {
+    public init(login: String, password: String, urlRequest: String) {
         self.login = login
         self.password = password
+        self.urlRequest = urlRequest
     }
 }
