@@ -1,15 +1,15 @@
 //
-//  ListTableViewCell.swift
+//  SettingsTableViewCell.swift
 //  RxHW
 //
-//  Created by Гузель Шарафутдинова on 16/01/2020.
+//  Created by Гузель Шарафутдинова on 21/01/2020.
 //  Copyright © 2020 Гузель Шарафутдинова. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-final class ListTableViewCell: UITableViewCell {
+final class SettingsTableViewCell: UITableViewCell {
     
     private let appearance = Appearance()
     
@@ -66,10 +66,10 @@ final class ListTableViewCell: UITableViewCell {
     }
 }
 
-extension ListTableViewCell {
+extension SettingsTableViewCell {
     
     public struct Constants {
-        static let cellIdentifier = "ListTableViewCell"
+        static let cellIdentifier = "SettingsTableViewCell"
     }
     
     struct Appearance {
@@ -79,8 +79,8 @@ extension ListTableViewCell {
     }
 }
 
-extension ListTableViewCell {
-    func configureCell(with viewModel: ListCellModel) {
+extension SettingsTableViewCell {
+    func configureCell(with viewModel: SettingsCellModel) {
         titleLabel.text = viewModel.title
         descriptionLabel.text = viewModel.description
     }

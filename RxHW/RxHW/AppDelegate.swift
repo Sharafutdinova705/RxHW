@@ -17,10 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         if let window = window {
             window.backgroundColor = UIColor.white
-            let navigationController = UINavigationController()
-            let mainView = LoginViewController(nibName: nil, bundle: nil) 
-            navigationController.viewControllers = [mainView]
-            window.rootViewController = navigationController
+            let mainView = LoginViewController()
+            mainView.isFirestLoad = true
+            window.rootViewController = mainView
             window.makeKeyAndVisible()
         }
         return true

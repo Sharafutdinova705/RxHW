@@ -88,4 +88,8 @@ final class LoginView: UIView {
             make.width.equalTo(constants.buttonWidth)
         }
     }
+    
+    private func setupStyle() {
+        backgroundColor = .white
+    }
 }
