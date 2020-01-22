@@ -147,8 +147,7 @@
 		8118CD3523D09D2500D20E24 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				8118CD5823D716FC00D20E24 /* Model */,
-				8118CD5B23D7191F00D20E24 /* ViewModel */,
+				8118CD5B23D7191F00D20E24 /* Model */,
 				8118CD5E23D71C9800D20E24 /* View */,
 			);
 			path = Settings;
@@ -201,19 +200,12 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		8118CD5823D716FC00D20E24 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		8118CD5B23D7191F00D20E24 /* ViewModel */ = {
+		8118CD5B23D7191F00D20E24 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				8118CD5C23D7193700D20E24 /* SettingsCellModel.swift */,
 			);
-			path = ViewModel;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		8118CD5E23D71C9800D20E24 /* View */ = {
