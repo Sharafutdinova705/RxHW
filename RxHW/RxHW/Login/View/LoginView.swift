@@ -25,6 +25,11 @@ final class LoginView: UIView {
     
     private let constants = Constants()
     
+    lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        return scrollView
+    }()
+    
     private lazy var containterView: UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
@@ -67,16 +72,54 @@ final class LoginView: UIView {
     private func commonInit() {
         addSubviews()
         makeConstraints()
+        addTapGesture()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onShowKeyboard(notification:)),
+            name: UIWindow.keyboardWillShowNotification, object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(onHideKeyboard),
+            name: UIWindow.keyboardWillHideNotification,
+            object: nil
+        )
+    }
+    
+    private func addTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        addGestureRecognizer(tapGesture)
+    }
+    
+    @objc
+    private func onShowKeyboard(notification: Notification) {
+        guard let keyboardFrameValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        let keyboardFrame = convert(keyboardFrameValue.cgRectValue, from: nil)
+        scrollView.contentInset.bottom = keyboardFrame.size.height + constants.buttonHeigh
+        scrollView.scrollIndicatorInsets = scrollView.contentInset
+    }
+    
+    @objc
+    private func onHideKeyboard() {
+        scrollView.contentInset = .zero
+    }
+    
+    @objc
+    private func hideKeyboard() {
+        endEditing(true)
     }
     
     private func addSubviews() {
-        addSubview(containterView)
-        addSubview(submitButton)
+        addSubview(scrollView)
+        scrollView.addSubview(containterView)
+        scrollView.addSubview(submitButton)
         containterView.addArrangedSubview(emailTextField)
         containterView.addArrangedSubview(passwordTextField)
     }
     
     private func makeConstraints() {
+        scrollView.snp.makeConstraints { make in
+            make.edges.centerX.equalToSuperview()
+        }
         containterView.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(constants.containerInset)
@@ -86,6 +129,7 @@ final class LoginView: UIView {
             make.top.equalTo(containterView.snp.bottom).offset(constants.stackSpacing)
             make.height.equalTo(constants.buttonHeigh)
             make.width.equalTo(constants.buttonWidth)
+            make.bottom.equalToSuperview()
         }
     }
     
